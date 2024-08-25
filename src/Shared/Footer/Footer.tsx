@@ -1,34 +1,39 @@
+import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../redux/hooks';
 
 const Footer = () => {
   const currentTheme = useAppSelector((state) => state.theme.currentTheme);
 
   return (
-    <div className="lg:fixed bottom-0 w-full my-auto">
+    <div>
       <footer className="footer bg-base-200 text-base-content p-10">
         <nav>
-          <h6 className="footer-title">Services</h6>
-          <a className="link link-hover">Branding</a>
-          <a className="link link-hover">Design</a>
-          <a className="link link-hover">Marketing</a>
-          <a className="link link-hover">Advertisement</a>
-        </nav>
-        <nav>
           <h6 className="footer-title">Company</h6>
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
+          <Link to="/about-us" className="link link-hover">
+            About us
+          </Link>
+          <Link to="/contact-us" className="link link-hover">
+            Contact
+          </Link>
+          <Link to="/booking" className="link link-hover">
+            Booking
+          </Link>
         </nav>
         <nav>
           <h6 className="footer-title">Legal</h6>
-          <a className="link link-hover">Terms of use</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Cookie policy</a>
+          <Link to="/terms-of-service" className="link link-hover">
+            Terms of service
+          </Link>
+          <Link to="/privacy-policy" className="link link-hover">
+            Privacy policy
+          </Link>
+          <Link to="/cookie-policy" className="link link-hover">
+            Cookie policy
+          </Link>
         </nav>
       </footer>
       <footer className="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
-        <aside className="grid-flow-col items-center">
+        <aside className="grid-flow-row md:grid-flow-col items-center">
           <img
             className="w-44"
             src={currentTheme === 'light' ? '/logo.webp' : '/logo-dark.webp'}
