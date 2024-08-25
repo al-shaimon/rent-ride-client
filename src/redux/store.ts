@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
+import themeReducer from './features/themeSlice';
 
 export const store = configureStore({
   reducer: {
-  //  reducers here
+    theme: themeReducer,
   },
   // devTools: false, // Disable Redux DevTools in production
 });

@@ -4,6 +4,8 @@ import Home from '../pages/Home/Home';
 import Booking from '../pages/Booking/Booking';
 import Contact from '../pages/Contact/Contact';
 import About from '../pages/About/About';
+import Login from '../Shared/Auth/Login';
+import Signup from '../Shared/Auth/Signup';
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ export const router = createBrowserRouter([
       {
         path: '/about-us',
         element: <About />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/signup',
+        element: <Signup />,
       },
     ],
   },

@@ -1,27 +1,21 @@
-import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { toggleTheme } from '../../redux/features/themeSlice';
 
 const NavBar = () => {
-  const [theme, setTheme] = useState('light');
+  const dispatch = useAppDispatch();
+  const currentTheme = useAppSelector((state) => state.theme.currentTheme);
 
-  useEffect(() => {
-    const userTheme = localStorage.getItem('theme') || 'light';
-    setTheme(userTheme);
-    document.documentElement.setAttribute('data-theme', userTheme);
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
+  const handleToggleTheme = () => {
+    dispatch(toggleTheme());
   };
 
   return (
     <div className="navbar bg-base-100">
+      {/* Navbar Start */}
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+          <button tabIndex={0} className="btn btn-ghost btn-circle" aria-label="Menu">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -32,11 +26,11 @@ const NavBar = () => {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth="2"
+                strokeWidth={2}
                 d="M4 6h16M4 12h16M4 18h7"
               />
             </svg>
-          </div>
+          </button>
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-2xl"
@@ -61,21 +55,29 @@ const NavBar = () => {
           </ul>
         </div>
       </div>
+
+      {/* Navbar Center */}
       <div className="navbar-center">
-        <a className="btn btn-ghost text-xl">
+        <NavLink to="/" className="btn btn-ghost normal-case text-xl">
           <img
             className="w-44"
-            src={theme === 'light' ? '/logo.webp' : '/logo-dark.webp'}
+            src={currentTheme === 'light' ? '/logo.webp' : '/logo-dark.webp'}
             alt="logo"
           />
-        </a>
+        </NavLink>
       </div>
+
+      {/* Navbar End */}
       <div className="navbar-end">
-        <button className="btn btn-ghost btn-circle" onClick={toggleTheme}>
-          {theme === 'light' ? (
-            <img className="h-5 w-5 fill-current" src="moon.svg" alt="light" />
+        <button
+          className="btn btn-ghost btn-circle"
+          onClick={handleToggleTheme}
+          aria-label="Toggle Theme"
+        >
+          {currentTheme === 'light' ? (
+            <img className="h-5 w-5" src="moon.svg" alt="dark" />
           ) : (
-            <img className="h-5 w-5 fill-current" src="sun.svg" alt="dark" />
+            <img className="h-5 w-5" src="sun.svg" alt="light" />
           )}
         </button>
       </div>
