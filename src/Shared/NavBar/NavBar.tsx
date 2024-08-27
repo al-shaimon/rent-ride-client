@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { toggleTheme } from '../../redux/features/themeSlice';
+import { NavLink } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { toggleTheme } from "../../redux/features/themeSlice";
 
 const NavBar = () => {
   const dispatch = useAppDispatch();
@@ -15,7 +15,11 @@ const NavBar = () => {
       {/* Navbar Start */}
       <div className="navbar-start">
         <div className="dropdown">
-          <button tabIndex={0} className="btn btn-ghost btn-circle" aria-label="Menu">
+          <button
+            tabIndex={0}
+            className="btn btn-circle btn-ghost"
+            aria-label="Menu"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -33,7 +37,7 @@ const NavBar = () => {
           </button>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-2xl"
+            className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow-2xl"
           >
             <li>
               <NavLink to="/">Home</NavLink>
@@ -47,9 +51,14 @@ const NavBar = () => {
             <li>
               <NavLink to="/about-us">About</NavLink>
             </li>
-            <li>
-              <NavLink className="btn btn-sm btn-outline" to="/login">
-                Login
+            <li className="my-2 md:hidden">
+              <NavLink className="btn btn-outline btn-sm" to="/login">
+                Sign in
+              </NavLink>
+            </li>
+            <li className="md:hidden">
+              <NavLink className="btn btn-sm bg-primary text-white" to="/login">
+                Sign up
               </NavLink>
             </li>
           </ul>
@@ -58,10 +67,11 @@ const NavBar = () => {
 
       {/* Navbar Center */}
       <div className="navbar-center">
-        <NavLink to="/" className="btn btn-ghost normal-case text-xl">
+        <NavLink to="/" className="btn btn-ghost text-xl normal-case">
           <img
-            className="w-44"
-            src={currentTheme === 'light' ? '/logo.webp' : '/logo-dark.webp'}
+            className="w-44 md:w-56"
+            // src={currentTheme === 'light' ? '/logo.webp' : '/logo-dark.webp'}
+            src="/logo-blue.webp"
             alt="logo"
           />
         </NavLink>
@@ -69,13 +79,24 @@ const NavBar = () => {
 
       {/* Navbar End */}
       <div className="navbar-end">
+        <div className="me-2 hidden gap-2 md:flex">
+          <NavLink to="/login" className="btn btn-ghost">
+            Sign in
+          </NavLink>
+          <NavLink
+            to="/login"
+            className="btn rounded-md border-none bg-primary text-white"
+          >
+            Sign up
+          </NavLink>
+        </div>
         <button
-          className="btn btn-ghost btn-circle"
+          className="btn btn-circle btn-ghost"
           onClick={handleToggleTheme}
           aria-label="Toggle Theme"
         >
-          {currentTheme === 'light' ? (
-            <img className="h-5 w-5" src="moon.svg" alt="dark" />
+          {currentTheme === "light" ? (
+            <img className="h-5 w-5 text-[#1572D3]" src="moon.svg" alt="dark" />
           ) : (
             <img className="h-5 w-5" src="sun.svg" alt="light" />
           )}

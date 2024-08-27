@@ -9,6 +9,7 @@ import Signup from '../Shared/Auth/Signup';
 import TermsOfService from '../Shared/Policies/TermsOfService';
 import PrivacyPolicy from '../Shared/Policies/PrivacyPolicy';
 import CookiePolicy from '../Shared/Policies/CookiePolicy';
+import Error from '../pages/Error/Error';
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: '/signup',
         element: <Signup />,
+      },
+      {
+        path: '*',
+        element: <Error/>,
       },
     ],
   },
