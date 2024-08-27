@@ -1,60 +1,79 @@
-import { createBrowserRouter } from 'react-router-dom';
-import App from '../App';
-import Home from '../pages/Home/Home';
-import Booking from '../pages/Booking/Booking';
-import Contact from '../pages/Contact/Contact';
-import About from '../pages/About/About';
-import Login from '../Shared/Auth/Login';
-import Signup from '../Shared/Auth/Signup';
-import TermsOfService from '../Shared/Policies/TermsOfService';
-import PrivacyPolicy from '../Shared/Policies/PrivacyPolicy';
-import CookiePolicy from '../Shared/Policies/CookiePolicy';
-import Error from '../pages/Error/Error';
+import { createBrowserRouter } from "react-router-dom";
+import App from "../App";
+import Home from "../pages/Home/Home";
+import Booking from "../pages/Booking/Booking";
+import Contact from "../pages/Contact/Contact";
+import About from "../pages/About/About";
+import Login from "../Shared/Auth/Login";
+import Signup from "../Shared/Auth/Signup";
+import TermsOfService from "../Shared/Policies/TermsOfService";
+import PrivacyPolicy from "../Shared/Policies/PrivacyPolicy";
+import CookiePolicy from "../Shared/Policies/CookiePolicy";
+import Error from "../pages/Error/Error";
+import UserDashboard from "../pages/Dashboard/UserDashboard";
+import AdminDashboard from "../pages/Dashboard/AdminDashboard";
+import ProtectedRoute from "../layout/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home />,
       },
       {
-        path: '/booking',
+        path: "/booking",
         element: <Booking />,
       },
       {
-        path: '/contact-us',
+        path: "/contact-us",
         element: <Contact />,
       },
       {
-        path: '/about-us',
+        path: "/about-us",
         element: <About />,
       },
       {
-        path: '/terms-of-service',
+        path: "/terms-of-service",
         element: <TermsOfService />,
       },
       {
-        path: '/privacy-policy',
+        path: "/privacy-policy",
         element: <PrivacyPolicy />,
       },
       {
-        path: '/cookie-policy',
+        path: "/cookie-policy",
         element: <CookiePolicy />,
       },
       {
-        path: '/login',
+        path: "/login",
         element: <Login />,
       },
       {
-        path: '/signup',
+        path: "/signup",
         element: <Signup />,
       },
       {
-        path: '*',
-        element: <Error/>,
+        path: "/dashboard",
+        element: (
+          <ProtectedRoute role="user">
+            <UserDashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/admin/dashboard",
+        element: (
+          <ProtectedRoute role="admin">
+            <AdminDashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "*",
+        element: <Error />,
       },
     ],
   },

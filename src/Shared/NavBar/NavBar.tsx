@@ -1,10 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { toggleTheme } from "../../redux/features/themeSlice";
+import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 
 const NavBar = () => {
   const dispatch = useAppDispatch();
   const currentTheme = useAppSelector((state) => state.theme.currentTheme);
+  const currentUser = useAppSelector(selectCurrentUser);
 
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
@@ -51,16 +53,23 @@ const NavBar = () => {
             <li>
               <NavLink to="/about-us">About</NavLink>
             </li>
-            <li className="my-2 md:hidden">
-              <NavLink className="btn btn-outline btn-sm" to="/login">
-                Sign in
-              </NavLink>
-            </li>
-            <li className="md:hidden">
-              <NavLink className="btn btn-sm bg-primary text-white" to="/login">
-                Sign up
-              </NavLink>
-            </li>
+            {!currentUser && ( // Hide Sign in and Sign up buttons if the user is logged in
+              <>
+                <li className="my-2 md:hidden">
+                  <NavLink className="btn btn-outline btn-sm" to="/login">
+                    Sign in
+                  </NavLink>
+                </li>
+                <li className="md:hidden">
+                  <NavLink
+                    className="btn btn-sm bg-primary text-white"
+                    to="/signup"
+                  >
+                    Sign up
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
@@ -70,7 +79,6 @@ const NavBar = () => {
         <NavLink to="/" className="btn btn-ghost text-xl normal-case">
           <img
             className="w-44 md:w-56"
-            // src={currentTheme === 'light' ? '/logo.webp' : '/logo-dark.webp'}
             src="/logo-blue.webp"
             alt="logo"
           />
@@ -80,15 +88,19 @@ const NavBar = () => {
       {/* Navbar End */}
       <div className="navbar-end">
         <div className="me-2 hidden gap-2 md:flex">
-          <NavLink to="/login" className="btn btn-ghost">
-            Sign in
-          </NavLink>
-          <NavLink
-            to="/login"
-            className="btn rounded-md border-none bg-primary text-white"
-          >
-            Sign up
-          </NavLink>
+          {!currentUser && ( // Hide Sign in and Sign up buttons if the user is logged in
+            <>
+              <NavLink to="/login" className="btn btn-ghost">
+                Sign in
+              </NavLink>
+              <NavLink
+                to="/signup"
+                className="btn rounded-md border-none bg-primary text-white"
+              >
+                Sign up
+              </NavLink>
+            </>
+          )}
         </div>
         <button
           className="btn btn-circle btn-ghost"

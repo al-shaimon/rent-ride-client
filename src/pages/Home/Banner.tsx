@@ -2,10 +2,12 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FiMapPin } from "react-icons/fi";
+import { GoArrowRight } from "react-icons/go";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 
 const Banner = () => {
   const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   return (
     <div className="mt-3">
@@ -22,6 +24,11 @@ const Banner = () => {
             Get a car wherever and whenever you <br /> need it with your IOS and
             Android device.
           </p>
+          <div className="mt-5 flex justify-center mb-10 md:mb-0 md:justify-start">
+            <button className="btn flex w-36 items-center gap-2 rounded-md border-none bg-primary text-white">
+              Book Now <GoArrowRight size={24} />
+            </button>
+          </div>
         </div>
         <div>
           <img src="/car.png" alt="car" />
@@ -85,9 +92,9 @@ const Banner = () => {
           <div>
             <p className="font-bold">Return Date</p>
             <DatePicker
-              selected={startDate}
+              selected={endDate}
               dateFormat="dd/MM/yyyy"
-              onChange={(date) => setStartDate(date as Date)}
+              onChange={(date) => setEndDate(date as Date)}
               className="bg-base-100"
             />
           </div>
