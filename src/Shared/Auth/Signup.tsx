@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import {
-  useLoginMutation,
   useSignupMutation,
 } from "../../redux/features/auth/authApi";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,7 +14,7 @@ type Inputs = {
   password: string;
   confirmPassword: string;
   phone?: string;
-  terms: boolean; // New field for terms and conditions
+  terms: boolean;
 };
 
 const Signup = () => {
@@ -39,7 +38,7 @@ const Signup = () => {
         type: "manual",
         message: "Passwords do not match",
       });
-      return; // Exit early to prevent the toast from showing
+      return; 
     }
 
     const toastId = toast.loading("Signing up...");
