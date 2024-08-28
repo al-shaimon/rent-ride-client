@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import { Autoplay } from "swiper/modules";
+// import { Autoplay } from "swiper/modules";
 
 const Testimonials = () => {
   return (
@@ -21,11 +21,11 @@ const Testimonials = () => {
       <div className="">
         <Swiper
           className="mySwiper"
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: true,
-          }}
-          modules={[Autoplay]}
+          // autoplay={{
+          //   delay: 5000,
+          //   disableOnInteraction: true,
+          // }}
+          // modules={[Autoplay]}
         >
           {/* User1 */}
           <SwiperSlide>

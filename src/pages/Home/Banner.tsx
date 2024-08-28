@@ -8,6 +8,7 @@ import { MdOutlineCalendarMonth } from "react-icons/md";
 const Banner = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  console.log(startDate, endDate);
 
   return (
     <div className="mt-3">
@@ -24,7 +25,7 @@ const Banner = () => {
             Get a car wherever and whenever you <br /> need it with your IOS and
             Android device.
           </p>
-          <div className="mt-5 flex justify-center mb-10 md:mb-0 md:justify-start">
+          <div className="mb-10 mt-5 flex justify-center md:mb-0 md:justify-start">
             <button className="btn flex w-36 items-center gap-2 rounded-md border-none bg-primary text-white">
               Book Now <GoArrowRight size={24} />
             </button>
@@ -82,7 +83,13 @@ const Banner = () => {
             <DatePicker
               selected={startDate}
               dateFormat="dd/MM/yyyy"
-              onChange={(date) => setStartDate(date as Date)}
+              minDate={new Date()}
+              onChange={(date) => {
+                setStartDate(date as Date);
+                if (date && date > endDate) {
+                  setEndDate(date);
+                }
+              }}
               className="bg-base-100"
             />
           </div>
@@ -94,6 +101,7 @@ const Banner = () => {
             <DatePicker
               selected={endDate}
               dateFormat="dd/MM/yyyy"
+              minDate={startDate}
               onChange={(date) => setEndDate(date as Date)}
               className="bg-base-100"
             />
