@@ -45,7 +45,7 @@ const NavBar = () => {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/booking">Booking</NavLink>
+              <NavLink to="/cars">Booking</NavLink>
             </li>
             <li>
               <NavLink to="/contact-us">Contact</NavLink>
@@ -108,9 +108,9 @@ const NavBar = () => {
           aria-label="Toggle Theme"
         >
           {currentTheme === "light" ? (
-            <img className="h-5 w-5 text-[#1572D3]" src="moon.svg" alt="dark" />
+            <img className="h-5 w-5 text-[#1572D3]" src="/moon.svg" alt="dark" />
           ) : (
-            <img className="h-5 w-5" src="sun.svg" alt="light" />
+            <img className="h-5 w-5" src="/sun.svg" alt="light" />
           )}
         </button>
       </div>

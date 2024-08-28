@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home/Home";
-import Booking from "../pages/Booking/Booking";
 import Contact from "../pages/Contact/Contact";
 import About from "../pages/About/About";
 import Login from "../Shared/Auth/Login";
@@ -13,6 +12,8 @@ import Error from "../pages/Error/Error";
 import UserDashboard from "../pages/Dashboard/UserDashboard";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard";
 import ProtectedRoute from "../layout/ProtectedRoute";
+import CarDetailsPage from "../pages/Booking/CarDetails";
+import CarListingPage from "../pages/Booking/CarListing";
 
 export const router = createBrowserRouter([
   {
@@ -24,8 +25,12 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/booking",
-        element: <Booking />,
+        path: "/cars",
+        element: <CarListingPage />,
+      },
+      {
+        path: "/car/:id",
+        element: <CarDetailsPage />,
       },
       {
         path: "/contact-us",

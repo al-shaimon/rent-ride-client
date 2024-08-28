@@ -4,11 +4,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { FiMapPin } from "react-icons/fi";
 import { GoArrowRight } from "react-icons/go";
 import { MdOutlineCalendarMonth } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  console.log(startDate, endDate);
+  // console.log(startDate, endDate);
 
   return (
     <div className="mt-3">
@@ -26,9 +27,11 @@ const Banner = () => {
             Android device.
           </p>
           <div className="mb-10 mt-5 flex justify-center md:mb-0 md:justify-start">
-            <button className="btn flex w-36 items-center gap-2 rounded-md border-none bg-primary text-white">
-              Book Now <GoArrowRight size={24} />
-            </button>
+            <Link to="/cars">
+              <button className="btn flex w-36 items-center gap-2 rounded-md border-none bg-primary text-white">
+                Book Now <GoArrowRight size={24} />
+              </button>
+            </Link>
           </div>
         </div>
         <div>

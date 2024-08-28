@@ -1,9 +1,13 @@
+// import CarDetailsPage from "./CarDetails";
+import CarListingPage from "./CarListing";
+
 const Booking = () => {
   return (
     <div>
-      <h1>This is Booking,tsx component</h1>
+      <CarListingPage />
+      {/* <CarDetailsPage/> */}
     </div>
-  )
+  );
 };
 
-export default Booking
+export default Booking;

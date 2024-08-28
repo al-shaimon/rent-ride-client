@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import {
   useSignupMutation,
