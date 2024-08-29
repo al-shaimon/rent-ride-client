@@ -43,40 +43,19 @@ const Banner = () => {
           <FiMapPin size={32} />
           <div>
             <p className="font-bold">Location</p>
-            <div className="dropdown dropdown-bottom">
-              <div tabIndex={0} role="button" className="m-1">
+            <select className="select select-bordered w-full max-w-xs focus:outline-none">
+              <option disabled selected>
                 Search your location
-              </div>
-              <ul
-                tabIndex={0}
-                className="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
-              >
-                <li>
-                  <a>Barishal</a>
-                </li>
-                <li>
-                  <a>Chittagong</a>
-                </li>
-                <li>
-                  <a>Dhaka</a>
-                </li>
-                <li>
-                  <a>Khulna</a>
-                </li>
-                <li>
-                  <a>Rajshahi</a>
-                </li>
-                <li>
-                  <a>Rangpur</a>
-                </li>
-                <li>
-                  <a>Mymensingh </a>
-                </li>
-                <li>
-                  <a>Sylhet</a>
-                </li>
-              </ul>
-            </div>
+              </option>
+              <option>Barishal</option>
+              <option>Chittagong</option>
+              <option>Dhaka</option>
+              <option>Khulna</option>
+              <option>Rajshahi</option>
+              <option>Rangpur</option>
+              <option>Mymensingh</option>
+              <option>Sylhet</option>
+            </select>
           </div>
         </div>
         <div className="mx-auto flex w-[320px] items-center justify-end gap-2">

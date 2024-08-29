@@ -85,7 +85,7 @@ const Testimonials = () => {
                   Charlie Johnson
                 </p>
                 <p className="text-xs text-[#838383] dark:text-slate-400 md:text-sm">
-                  From New York, US
+                  Dhaka, BD
                 </p>
               </div>
             </div>
@@ -145,7 +145,7 @@ const Testimonials = () => {
                 </p>
                 <p className="font-medium md:text-xl lg:text-2xl">Sarah Lee</p>
                 <p className="text-xs text-[#838383] dark:text-slate-400 md:text-sm">
-                  From Los Angeles, US
+                  Chittagong, BD
                 </p>
               </div>
             </div>
@@ -207,7 +207,7 @@ const Testimonials = () => {
                   Michael Smith
                 </p>
                 <p className="text-xs text-[#838383] dark:text-slate-400 md:text-sm">
-                  From Miami, US
+                  Dhaka, BD
                 </p>
               </div>
             </div>
@@ -269,7 +269,7 @@ const Testimonials = () => {
                   Emily Davis
                 </p>
                 <p className="text-xs text-[#838383] dark:text-slate-400 md:text-sm">
-                  From Chicago, US
+                  Rajshahi, BD
                 </p>
               </div>
             </div>
@@ -331,7 +331,7 @@ const Testimonials = () => {
                   James Taylor
                 </p>
                 <p className="text-xs text-[#838383] dark:text-slate-400 md:text-sm">
-                  From Dallas, US
+                  Sylhet, BD
                 </p>
               </div>
             </div>

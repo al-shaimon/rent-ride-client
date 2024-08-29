@@ -1,6 +1,20 @@
 import { GoArrowRight } from "react-icons/go";
+import { useGetAllCarsQuery } from "../../redux/features/cars/cars.api";
+import { Link } from "react-router-dom";
 
 const Popular = () => {
+  const { data, isLoading, error } = useGetAllCarsQuery(undefined);
+
+  if (isLoading) {
+    return <div></div>;
+  }
+
+  if (error || !data || data?.data?.length === 0) {
+    return <div>Failed to load cars.</div>;
+  }
+
+  const cars = data?.data?.slice(0, 4);
+
   return (
     <div className="my-[84px]">
       <div className="mb-6 text-center">
@@ -15,98 +29,39 @@ const Popular = () => {
       </div>
 
       <div className="grid justify-center gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
-        {/* Car 1 */}
-        <div className="w-80 transform rounded-lg bg-base-100 p-10 shadow-2xl transition-transform hover:scale-105">
-          <img src="/jaguar.png" alt="jaguar" />
+        {cars?.map((car) => (
+          <div
+            key={car._id}
+            className="flex h-full w-80 transform flex-col justify-between rounded-lg bg-base-100 p-10 shadow-2xl transition-transform hover:scale-105"
+          >
+            <div>
+              <img src={car.image} alt={car.name} className="mb-4" />
 
-          <div className="flex flex-col gap-2">
-            <p className="text-xl font-bold">Jaguar XE L P250</p>
-            <p className="text-sm">
-              <strong> Description: </strong>An electric car with advanced
-              technology and performance.
-            </p>
-            <p className="text-sm">
-              <strong>Features: </strong>AC, Bluetooth, Long Range Battery
-            </p>
-            <p className="text-sm">
-              <strong>Price: </strong>$500 / hour
-            </p>
+              <div className="flex flex-col gap-2">
+                <p className="text-xl font-bold">{car.name}</p>
+                <p className="text-sm">
+                  <strong>Description: </strong>
+                  {car.description}
+                </p>
+                <p className="text-sm">
+                  <strong>Features: </strong>
+                  {car.features.join(", ")}
+                </p>
+                <p className="text-sm">
+                  <strong>Price: </strong>${car.pricePerHour} / hour
+                </p>
+              </div>
+            </div>
+
             <div className="mt-5 flex justify-center">
-              <button className="btn flex w-44 items-center gap-2 rounded-md border-none bg-primary text-white">
-                Rent Now <GoArrowRight size={24} />
-              </button>
+              <Link to={`/car/${car._id}`}>
+                <button className="btn flex w-44 items-center gap-2 rounded-md border-none bg-primary text-white">
+                  Rent Now <GoArrowRight size={24} />
+                </button>
+              </Link>
             </div>
           </div>
-        </div>
-        {/* Car 2 */}
-        <div className="w-80 transform rounded-lg bg-base-100 p-10 shadow-2xl transition-transform hover:scale-105">
-          <img src="/jaguar.png" alt="jaguar" />
-
-          <div className="flex flex-col gap-2">
-            <p className="text-xl font-bold">Jaguar XE L P250</p>
-            <p className="text-sm">
-              <strong> Description: </strong>An electric car with advanced
-              technology and performance.
-            </p>
-            <p className="text-sm">
-              <strong>Features: </strong>AC, Bluetooth, Long Range Battery
-            </p>
-            <p className="text-sm">
-              <strong>Price: </strong>$500 / hour
-            </p>
-            <div className="mt-5 flex justify-center">
-              <button className="btn flex w-44 items-center gap-2 rounded-md border-none bg-primary text-white">
-                Rent Now <GoArrowRight size={24} />
-              </button>
-            </div>
-          </div>
-        </div>
-        {/* Car 3*/}
-        <div className="w-80 transform rounded-lg bg-base-100 p-10 shadow-2xl transition-transform hover:scale-105">
-          <img src="/jaguar.png" alt="jaguar" />
-
-          <div className="flex flex-col gap-2">
-            <p className="text-xl font-bold">Jaguar XE L P250</p>
-            <p className="text-sm">
-              <strong> Description: </strong>An electric car with advanced
-              technology and performance.
-            </p>
-            <p className="text-sm">
-              <strong>Features: </strong>AC, Bluetooth, Long Range Battery
-            </p>
-            <p className="text-sm">
-              <strong>Price: </strong>$500 / hour
-            </p>
-            <div className="mt-5 flex justify-center">
-              <button className="btn flex w-44 items-center gap-2 rounded-md border-none bg-primary text-white">
-                Rent Now <GoArrowRight size={24} />
-              </button>
-            </div>
-          </div>
-        </div>
-        {/* Car 4 */}
-        <div className="w-80 transform rounded-lg bg-base-100 p-10 shadow-2xl transition-transform hover:scale-105">
-          <img src="/jaguar.png" alt="jaguar" />
-
-          <div className="flex flex-col gap-2">
-            <p className="text-xl font-bold">Jaguar XE L P250</p>
-            <p className="text-sm">
-              <strong> Description: </strong>An electric car with advanced
-              technology and performance.
-            </p>
-            <p className="text-sm">
-              <strong>Features: </strong>AC, Bluetooth, Long Range Battery
-            </p>
-            <p className="text-sm">
-              <strong>Price: </strong>$500 / hour
-            </p>
-            <div className="mt-5 flex justify-center">
-              <button className="btn flex w-44 items-center gap-2 rounded-md border-none bg-primary text-white">
-                Rent Now <GoArrowRight size={24} />
-              </button>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

@@ -14,6 +14,8 @@ import AdminDashboard from "../pages/Dashboard/AdminDashboard";
 import ProtectedRoute from "../layout/ProtectedRoute";
 import CarDetailsPage from "../pages/Booking/CarDetails";
 import CarListingPage from "../pages/Booking/CarListing";
+import ForgetPassword from "../Shared/Auth/ForgetPassword";
+import ResetPassword from "../Shared/Auth/ResetPassword";
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +61,14 @@ export const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path: "/forget-password",
+        element: <ForgetPassword />,
+      },
+      {
+        path: "/reset-password/:token",
+        element: <ResetPassword />,
       },
       {
         path: "/dashboard",

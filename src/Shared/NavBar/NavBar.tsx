@@ -8,6 +8,8 @@ const NavBar = () => {
   const currentTheme = useAppSelector((state) => state.theme.currentTheme);
   const currentUser = useAppSelector(selectCurrentUser);
 
+  console.log("CCCCCCCCCCCC:", currentUser);
+
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
   };
@@ -70,6 +72,23 @@ const NavBar = () => {
                 </li>
               </>
             )}
+            {currentUser ? (
+              currentUser.role === "admin" ? (
+                <NavLink
+                  to="/admin/dashboard"
+                  className="btn btn-sm bg-primary text-white"
+                >
+                  Dashboard
+                </NavLink>
+              ) : (
+                <NavLink
+                  to="/dashboard"
+                  className="btn btn-sm bg-primary text-white"
+                >
+                  Dashboard
+                </NavLink>
+              )
+            ) : null}
           </ul>
         </div>
       </div>
@@ -77,11 +96,7 @@ const NavBar = () => {
       {/* Navbar Center */}
       <div className="navbar-center">
         <NavLink to="/" className="btn btn-ghost text-xl normal-case">
-          <img
-            className="w-44 md:w-56"
-            src="/logo-blue.webp"
-            alt="logo"
-          />
+          <img className="w-44 md:w-56" src="/logo-blue.webp" alt="logo" />
         </NavLink>
       </div>
 
@@ -101,6 +116,23 @@ const NavBar = () => {
               </NavLink>
             </>
           )}
+          {currentUser ? (
+            currentUser.role === "admin" ? (
+              <NavLink
+                to="/admin/dashboard"
+                className="btn rounded-md border-none bg-primary text-white"
+              >
+                Dashboard
+              </NavLink>
+            ) : (
+              <NavLink
+                to="/dashboard"
+                className="btn rounded-md border-none bg-primary text-white"
+              >
+                Dashboard
+              </NavLink>
+            )
+          ) : null}
         </div>
         <button
           className="btn btn-circle btn-ghost"
@@ -108,7 +140,11 @@ const NavBar = () => {
           aria-label="Toggle Theme"
         >
           {currentTheme === "light" ? (
-            <img className="h-5 w-5 text-[#1572D3]" src="/moon.svg" alt="dark" />
+            <img
+              className="h-5 w-5 text-[#1572D3]"
+              src="/moon.svg"
+              alt="dark"
+            />
           ) : (
             <img className="h-5 w-5" src="/sun.svg" alt="light" />
           )}
