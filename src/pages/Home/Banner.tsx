@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
   // console.log(startDate, endDate);
 
   return (
@@ -38,8 +37,8 @@ const Banner = () => {
           <img src="/car.png" alt="car" />
         </div>
       </div>
-      <div className="mx-auto grid max-w-screen-xl grid-rows-1 gap-5 rounded-box bg-base-100 py-5 shadow-2xl md:grid-cols-2 md:justify-around lg:grid-cols-4">
-        <div className="mx-auto flex w-[300px] items-center justify-center gap-2">
+      <div className="mx-auto grid max-w-screen-xl gap-5 rounded-box bg-base-100 py-5 shadow-2xl md:grid-cols-3 md:items-center">
+        <div className="mx-auto flex w-[225px] items-center justify-center gap-2">
           <FiMapPin size={32} />
           <div>
             <p className="font-bold">Location</p>
@@ -68,31 +67,15 @@ const Banner = () => {
               minDate={new Date()}
               onChange={(date) => {
                 setStartDate(date as Date);
-                if (date && date > endDate) {
-                  setEndDate(date);
-                }
               }}
               className="bg-base-100"
             />
           </div>
         </div>
-        <div className="mx-auto flex w-[320px] items-center justify-end gap-2">
-          <MdOutlineCalendarMonth size={32} />
-          <div>
-            <p className="font-bold">Return Date</p>
-            <DatePicker
-              selected={endDate}
-              dateFormat="dd/MM/yyyy"
-              minDate={startDate}
-              onChange={(date) => setEndDate(date as Date)}
-              className="bg-base-100"
-            />
-          </div>
-        </div>
         <div className="mx-auto flex items-center">
-          <button className="btn w-72 rounded-md border-none bg-primary text-white md:w-44">
+          <Link to="/cars" className="btn w-72 rounded-md border-none bg-primary text-white md:w-44">
             Search
-          </button>
+          </Link>
         </div>
       </div>
     </div>

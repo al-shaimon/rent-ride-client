@@ -9,13 +9,22 @@ import TermsOfService from "../Shared/Policies/TermsOfService";
 import PrivacyPolicy from "../Shared/Policies/PrivacyPolicy";
 import CookiePolicy from "../Shared/Policies/CookiePolicy";
 import Error from "../pages/Error/Error";
-import UserDashboard from "../pages/Dashboard/UserDashboard";
-import AdminDashboard from "../pages/Dashboard/AdminDashboard";
+import UserDashboard from "../pages/Dashboard/User/UserDashboard";
+
 import ProtectedRoute from "../layout/ProtectedRoute";
 import CarDetailsPage from "../pages/Booking/CarDetails";
 import CarListingPage from "../pages/Booking/CarListing";
 import ForgetPassword from "../Shared/Auth/ForgetPassword";
 import ResetPassword from "../Shared/Auth/ResetPassword";
+import UserOverview from "../pages/Dashboard/User/UserOverview";
+import BookingManagement from "../pages/Dashboard/User/BookingManagement";
+import PaymentManagement from "../pages/Dashboard/User/PaymentManagement";
+import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
+import AdminOverview from "../pages/Dashboard/Admin/AdminOverview";
+import ManageCars from "../pages/Dashboard/Admin/ManageCars";
+import ManageBookings from "../pages/Dashboard/Admin/ManageBookings";
+import ManageReturnCars from "../pages/Dashboard/Admin/ManageReturnCars";
+import UserManagement from "../pages/Dashboard/Admin/UserManagement";
 
 export const router = createBrowserRouter([
   {
@@ -77,6 +86,20 @@ export const router = createBrowserRouter([
             <UserDashboard />
           </ProtectedRoute>
         ),
+        children: [
+          {
+            path: "",
+            element: <UserOverview />,
+          },
+          {
+            path: "bookings",
+            element: <BookingManagement />,
+          },
+          {
+            path: "payments",
+            element: <PaymentManagement />,
+          },
+        ],
       },
       {
         path: "/admin/dashboard",
@@ -85,6 +108,28 @@ export const router = createBrowserRouter([
             <AdminDashboard />
           </ProtectedRoute>
         ),
+        children: [
+          {
+            path: "",
+            element: <AdminOverview />,
+          },
+          {
+            path: "manage-cars",
+            element: <ManageCars />,
+          },
+          {
+            path: "manage-bookings",
+            element: <ManageBookings />,
+          },
+          {
+            path: "manage-return-cars",
+            element: <ManageReturnCars />,
+          },
+          {
+            path: "user-management",
+            element: <UserManagement />,
+          },
+        ],
       },
       {
         path: "*",

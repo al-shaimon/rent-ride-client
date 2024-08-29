@@ -50,6 +50,6 @@ const baseQueryWithAccessToken: BaseQueryFn<
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryWithAccessToken,
-  tagTypes: [],
+  tagTypes: ["AdminBooking", "UserBooking"],
   endpoints: () => ({}),
 });

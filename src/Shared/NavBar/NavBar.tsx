@@ -8,14 +8,12 @@ const NavBar = () => {
   const currentTheme = useAppSelector((state) => state.theme.currentTheme);
   const currentUser = useAppSelector(selectCurrentUser);
 
-  console.log("CCCCCCCCCCCC:", currentUser);
-
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
   };
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar z-[99999] bg-base-100">
       {/* Navbar Start */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -41,7 +39,7 @@ const NavBar = () => {
           </button>
           <ul
             tabIndex={0}
-            className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow-2xl"
+            className="menu dropdown-content menu-sm z-[99999] mt-3 w-52 rounded-box bg-base-100 p-2 shadow-2xl"
           >
             <li>
               <NavLink to="/">Home</NavLink>
@@ -72,23 +70,25 @@ const NavBar = () => {
                 </li>
               </>
             )}
-            {currentUser ? (
-              currentUser.role === "admin" ? (
-                <NavLink
-                  to="/admin/dashboard"
-                  className="btn btn-sm bg-primary text-white"
-                >
-                  Dashboard
-                </NavLink>
-              ) : (
-                <NavLink
-                  to="/dashboard"
-                  className="btn btn-sm bg-primary text-white"
-                >
-                  Dashboard
-                </NavLink>
-              )
-            ) : null}
+            <li className="lg:hidden">
+              {currentUser ? (
+                currentUser.role === "admin" ? (
+                  <NavLink
+                    to="/admin/dashboard"
+                    className="btn btn-sm bg-primary text-white"
+                  >
+                    Dashboard
+                  </NavLink>
+                ) : (
+                  <NavLink
+                    to="/dashboard"
+                    className="btn btn-sm bg-primary text-white"
+                  >
+                    Dashboard
+                  </NavLink>
+                )
+              ) : null}
+            </li>
           </ul>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { toast } from "sonner";
 import { setUser, TUser } from "../../redux/features/auth/authSlice";
-import { verifyToken } from "../../utils/verifyToken";
+// import { verifyToken } from "../../utils/verifyToken";
 
 type Inputs = {
   email: string;
@@ -36,9 +36,11 @@ const Login = () => {
 
       const res = await login(userInfo).unwrap();
 
-      console.log("res", res);
+      // console.log("res", res);
 
-      const user = verifyToken(res.token) as TUser;
+      // const user = verifyToken(res.token) as TUser;
+
+      const user = res.data as TUser;
 
       dispatch(setUser({ user: user, token: res.token }));
 

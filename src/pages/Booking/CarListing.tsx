@@ -27,7 +27,8 @@ const CarListingPage = () => {
       filters.minPrice === "" || car.pricePerHour >= parseInt(filters.minPrice);
     const maxPriceMatch =
       filters.maxPrice === "" || car.pricePerHour <= parseInt(filters.maxPrice);
-    return typeMatch && minPriceMatch && maxPriceMatch;
+    const notDeleted = !car.isDeleted; // Check if the car is not deleted
+    return typeMatch && minPriceMatch && maxPriceMatch && notDeleted;
   });
 
   if (isLoading) {

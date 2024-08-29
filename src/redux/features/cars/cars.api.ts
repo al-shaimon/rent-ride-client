@@ -19,6 +19,7 @@ const carsApi = baseApi.injectEndpoints({
           params: params,
         };
       },
+      providesTags: ["AdminBooking"],
       transformResponse: (response: TResponseRedux<TCars[]>) => {
         return {
           data: response.data,
@@ -31,11 +32,12 @@ const carsApi = baseApi.injectEndpoints({
         url: `/cars/${id}`,
         method: "GET",
       }),
+      providesTags: ["AdminBooking"],
       transformResponse: (response: TResponseRedux<TCars>) => {
         if (response.data) {
           return response.data;
         } else {
-          console.log("error from cars")
+          console.log("error from cars");
           return Promise.reject(new Error("Response data is undefined."));
         }
       },

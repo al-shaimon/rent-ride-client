@@ -61,3 +61,16 @@ body {
 .image-container:hover img {
   transform: scale(1.6);
 }
+
+.sidebarActive {
+  background-color: #1572d3;
+  color: #fff;
+  font-weight: 600;
+}
+
+.sidebarActive:hover {
+  background-color: #e0e0e0;
+  color: black;
+  font-weight: 600;
+}
+
