@@ -59,7 +59,7 @@ const Popular = () => {
             </div>
 
             <div className="mt-5 flex justify-center">
-              <Link to={`/car/${car._id}`}>
+              <Link to={`/booking/${car._id}`}>
                 <button className="btn flex w-44 items-center gap-2 rounded-md border-none bg-primary text-white">
                   Rent Now <GoArrowRight size={24} />
                 </button>
