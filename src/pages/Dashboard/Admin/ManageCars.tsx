@@ -12,15 +12,44 @@ import {
 import { toast } from "sonner";
 
 const ManageCars = () => {
-  const { data: allCars, refetch } = useGetAllCarsQuery(undefined);
+  const {
+    data: allCars,
+    isLoading,
+    isFetching,
+    refetch,
+  } = useGetAllCarsQuery(undefined);
   const [selectedCar, setSelectedCar] = useState<TCars | null>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const { register, handleSubmit, reset, setValue, getValues } =
-    useForm<TCars>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    getValues,
+    formState: { errors },
+    watch,
+  } = useForm<TCars>();
   const [manageCars] = useManageCarsMutation();
   const [addNewCar] = useAddNewCarMutation();
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const watchedFeatures = watch("features");
+
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
+
+  if (isFetching) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
 
   const filteredCars = allCars?.data?.filter((car) => !car.isDeleted);
 
@@ -43,7 +72,7 @@ const ManageCars = () => {
     if (confirmDelete) {
       manageCars({ carId: car._id, updateData: { isDeleted: true } });
       refetch(); // Refetch cars data after deleting
-      toast.success("Car removed successfully!");
+      toast.success("Car removed successfully!", { duration: 2000 });
     }
   };
 
@@ -75,8 +104,10 @@ const ManageCars = () => {
         );
         const imageUrl = response.data.secure_url;
         setValue("image", imageUrl);
+        toast.success("Image uploaded", { duration: 2000 });
       } catch (error) {
         console.error("Image upload failed:", error);
+        toast.error("Image upload failed", { duration: 2000 });
       } finally {
         setUploading(false);
       }
@@ -87,11 +118,12 @@ const ManageCars = () => {
     try {
       formData.pricePerHour = Number(formData.pricePerHour); // Ensure pricePerHour is a number
       formData.isElectric = Boolean(formData.pricePerHour); // Ensure pricePerHour is a number
-      await manageCars({ carId: selectedCar?._id, updateData: formData });
+      await manageCars({ carId: selectedCar?._id, updateData: formData }).unwrap();
       (document.getElementById("edit_car_modal") as HTMLFormElement)?.close();
       refetch(); // Refetch cars data after updating
-    } catch (error) {
+    } catch (error: any) {
       console.error("Failed to update car:", error);
+      toast.error("Failed to update car!", { duration: 2000 });
     }
   };
 
@@ -99,12 +131,13 @@ const ManageCars = () => {
     try {
       formData.pricePerHour = Number(formData.pricePerHour);
       formData.isElectric = Boolean(formData.pricePerHour);
-      await addNewCar(formData);
+      await addNewCar(formData).unwrap();
       (document.getElementById("add_car_modal") as HTMLFormElement)?.close();
       refetch(); // Refetch cars data after adding
       toast.success("Car added successfully!");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Failed to add car:", error);
+      toast.error("Failed to add car!", { duration: 2000 });
     }
   };
 
@@ -129,7 +162,7 @@ const ManageCars = () => {
     }
   };
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="mx-auto mb-10 max-w-6xl">
       <div className="mb-10 flex-1">
         <h1 className="mb-3 text-3xl font-bold">Manage Cars</h1>
         <button
@@ -274,9 +307,7 @@ const ManageCars = () => {
                     <input
                       type="checkbox"
                       value={feature}
-                      checked={
-                        selectedCar?.features?.includes(feature) || false
-                      }
+                      checked={watchedFeatures?.includes(feature) || false}
                       onChange={handleFeatureChange}
                       className="checkbox"
                     />
@@ -351,37 +382,68 @@ const ManageCars = () => {
               <label className="label">Car Name</label>
               <input
                 type="text"
-                {...register("name")}
+                {...register("name", { required: true })}
                 className="input input-bordered"
               />
+              <p className="ps-1">
+                {errors?.name && (
+                  <span className="text-xs text-red-500">
+                    Car name is required
+                  </span>
+                )}
+              </p>
             </div>
             <div className="form-control">
               <label className="label">Description</label>
               <textarea
-                {...register("description")}
+                {...register("description", { required: true })}
                 className="textarea textarea-bordered"
               />
+              <p className="ps-1">
+                {errors?.description && (
+                  <span className="text-xs text-red-500">
+                    Description is required
+                  </span>
+                )}
+              </p>
             </div>
             <div className="form-control">
               <label className="label">Car Type</label>
               <select
-                {...register("carType")}
+                {...register("carType", { required: true })}
                 className="select select-bordered"
               >
                 <option value="Electric">Electric</option>
                 <option value="SUV">SUV</option>
                 <option value="Sedan">Sedan</option>
               </select>
+              <p className="ps-1">
+                {errors?.carType && (
+                  <span className="text-xs text-red-500">
+                    Please choose car type
+                  </span>
+                )}
+              </p>
             </div>
             <div className="form-control">
               <label className="label">Color</label>
-              <select {...register("color")} className="select select-bordered">
+              <select
+                {...register("color", { required: true })}
+                className="select select-bordered"
+              >
                 <option value="Red">Red</option>
                 <option value="Green">Green</option>
                 <option value="Blue">Blue</option>
                 <option value="White">White</option>
                 <option value="Black">Black</option>
               </select>
+              <p className="ps-1">
+                {errors?.color && (
+                  <span className="text-xs text-red-500">
+                    Please choose color of the car
+                  </span>
+                )}
+              </p>
             </div>
             <div className="form-control">
               <label className="label">Electric</label>
@@ -418,20 +480,34 @@ const ManageCars = () => {
             <div className="form-control">
               <label className="label">Status</label>
               <select
-                {...register("status")}
+                {...register("status", { required: true })}
                 className="select select-bordered"
               >
                 <option value="available">Available</option>
                 <option value="unavailable">Unavailable</option>
               </select>
+              <p className="ps-1">
+                {errors?.status && (
+                  <span className="text-xs text-red-500">
+                    Please choose status of the car
+                  </span>
+                )}
+              </p>
             </div>
             <div className="form-control">
               <label className="label">Price Per Hour</label>
               <input
                 type="number"
-                {...register("pricePerHour")}
+                {...register("pricePerHour", { required: true })}
                 className="input input-bordered"
               />
+              <p className="ps-1">
+                {errors?.pricePerHour && (
+                  <span className="text-xs text-red-500">
+                    Please enter the price per hour
+                  </span>
+                )}
+              </p>
             </div>
             <div className="form-control">
               <label className="label">Image</label>
@@ -439,6 +515,7 @@ const ManageCars = () => {
                 type="file"
                 className="file-input file-input-bordered file-input-info w-full"
                 onChange={handleImageUpload}
+                required
               />
               {uploading && (
                 <div className="mt-2">

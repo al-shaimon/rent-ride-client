@@ -44,6 +44,9 @@ const Login = () => {
 
       dispatch(setUser({ user: user, token: res.token }));
 
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", res.token);
+
       toast.success("Logged in successfully!", { id: toastId, duration: 2000 });
 
       if (user.role === "admin") {

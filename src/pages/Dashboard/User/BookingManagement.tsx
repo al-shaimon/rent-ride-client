@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 import React, { useState } from "react";
 import {
   useGetAllUserBookingQuery,
@@ -48,7 +48,11 @@ const BookingManagement: React.FC = () => {
 
   const renderBookings = () => {
     if (isLoading) {
-      return <div className="py-10 text-center">Loading bookings...</div>;
+      return (
+        <div className="flex h-screen items-center justify-center">
+          <span className="loading loading-spinner loading-lg"></span>
+        </div>
+      );
     }
 
     if (bookings && bookings.data.length > 0) {

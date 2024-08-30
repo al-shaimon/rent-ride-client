@@ -45,6 +45,48 @@ const adminApi = baseApi.injectEndpoints({
       invalidatesTags: ["AdminBooking"],
       transformResponse: (response: TResponseRedux<any>) => response.data,
     }),
+    returnCar: builder.mutation({
+      query: ({ data }) => ({
+        url: "/cars/return",
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["AdminBooking"],
+      transformResponse: (response: TResponseRedux<any>) => response.data,
+    }),
+    getAllUsers: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        if (args) {
+          args.forEach((item: TQueryParam) => {
+            params.append(item.name, item.value as string);
+          });
+        }
+
+        return {
+          url: "/auth/admin/users",
+          method: "GET",
+          params: params,
+        };
+      },
+      providesTags: ["AdminBooking"],
+      transformResponse: (response: TResponseRedux<any>) => {
+        return {
+          data: response.data,
+          meta: response.meta,
+        };
+      },
+    }),
+    updateSingleUserInfo: builder.mutation({
+      query: ({ userId, updateData }) => ({
+        url: `/auth/admin/users/${userId}`,
+        method: "PUT",
+        body: updateData,
+      }),
+      invalidatesTags: ["AdminBooking"],
+      transformResponse: (response: TResponseRedux<any>) => response.data,
+    }),
   }),
 });
 
@@ -52,4 +94,7 @@ export const {
   useGetAllAdminBookingQuery,
   useAddNewCarMutation,
   useManageCarsMutation,
+  useReturnCarMutation,
+  useGetAllUsersQuery,
+  useUpdateSingleUserInfoMutation,
 } = adminApi;

@@ -10,6 +10,7 @@ const UserOverview = () => {
     const storedData = localStorage.getItem("user");
     return storedData ? JSON.parse(storedData) : null;
   });
+  console.log(userData);
 
   const {
     register,
@@ -47,10 +48,16 @@ const UserOverview = () => {
 
   // Fetch user's booking data
   const { data: bookingData, isLoading: isBookingLoading } =
-    useGetAllUserBookingQuery([]);
+    useGetAllUserBookingQuery(undefined);
+
+  console.log(bookingData);
 
   if (!userData) {
-    return <p>Loading user data...</p>;
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
   }
 
   return (
@@ -121,27 +128,31 @@ const UserOverview = () => {
         </h2>
 
         {isBookingLoading ? (
-          <p>Loading bookings...</p>
+          <div className="my-20 flex items-center justify-center">
+            <span className="loading loading-spinner loading-lg"></span>
+          </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="table w-full">
               <thead>
                 <tr>
+                  <th>No</th>
+                  <th>Car Name</th>
                   <th>Date</th>
                   <th>Start Time</th>
                   <th>End Time</th>
-                  <th>Car Name</th>
                   <th>Total Cost</th>
                 </tr>
               </thead>
               <tbody>
                 {bookingData?.data?.length > 0 ? (
-                  bookingData?.data.map((booking: any) => (
+                  bookingData?.data.map((booking: any, index: number) => (
                     <tr key={booking._id}>
+                      <td>{index + 1}</td>
+                      <td>{booking.car.name}</td>
                       <td>{new Date(booking.date).toLocaleDateString()}</td>
                       <td>{booking.startTime}</td>
                       <td>{booking.endTime || "N/A"}</td>
-                      <td>{booking.car.name}</td>
                       <td>{booking.totalCost}</td>
                     </tr>
                   ))

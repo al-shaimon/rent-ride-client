@@ -9,9 +9,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useGetAllAdminBookingQuery } from "../../../redux/features/admin/admin.api";
+import { useGetAllCarsQuery } from "../../../redux/features/cars/cars.api";
+import { toast } from "sonner";
 
 const AdminOverview = () => {
   const { data, isLoading, isError } = useGetAllAdminBookingQuery([]);
+  const { data: carsData, isFetching } = useGetAllCarsQuery([]);
 
   if (isLoading) {
     return (
@@ -20,14 +23,20 @@ const AdminOverview = () => {
       </div>
     );
   }
-
-  if (isError) {
+  if (isFetching) {
     return (
-      <div className="alert alert-error">Error loading dashboard data</div>
+      <div className="flex h-screen items-center justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
     );
   }
 
+  if (isError) {
+    toast.error("Error loading dashboard data");
+  }
+
   const bookings = data?.data || [];
+  const cars = carsData?.data || [];
 
   const totalBookings = bookings.length;
   const approvedBookings = bookings.filter(
@@ -38,9 +47,10 @@ const AdminOverview = () => {
     (sum: any, booking: { totalCost: any }) => sum + booking.totalCost,
     0,
   );
-  const availableCars = new Set(
-    bookings.map((booking: { car: { _id: any } }) => booking.car?._id),
-  ).size;
+  const availableCars = cars.filter(
+    (car: { status: string; isDeleted: boolean }) =>
+      car.status === "available" && !car.isDeleted,
+  ).length;
 
   const revenueData = bookings.map(
     (booking: { date: any; totalCost: any }) => ({
