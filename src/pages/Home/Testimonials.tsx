@@ -33,7 +33,7 @@ const Testimonials = () => {
               <div className="">
                 <img
                   className="h-[300px] rounded-l-3xl"
-                  src="/user1.png"
+                  src="/user1.webp"
                   alt="user"
                 />
               </div>
@@ -96,7 +96,7 @@ const Testimonials = () => {
               <div className="">
                 <img
                   className="h-[300px] rounded-l-3xl"
-                  src="/user2.png"
+                  src="/user2.webp"
                   alt="user"
                 />
               </div>
@@ -156,7 +156,7 @@ const Testimonials = () => {
               <div className="">
                 <img
                   className="h-[300px] rounded-l-3xl"
-                  src="/user3.png"
+                  src="/user3.webp"
                   alt="user"
                 />
               </div>
@@ -218,7 +218,7 @@ const Testimonials = () => {
               <div className="">
                 <img
                   className="h-[300px] rounded-l-3xl"
-                  src="/user4.png"
+                  src="/user4.webp"
                   alt="user"
                 />
               </div>
@@ -280,7 +280,7 @@ const Testimonials = () => {
               <div className="">
                 <img
                   className="h-[300px] rounded-l-3xl"
-                  src="/user5.png"
+                  src="/user5.webp"
                   alt="user"
                 />
               </div>

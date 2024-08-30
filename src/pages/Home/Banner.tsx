@@ -34,7 +34,7 @@ const Banner = () => {
           </div>
         </div>
         <div>
-          <img src="/car.png" alt="car" />
+          <img src="/car.webp" alt="car" />
         </div>
       </div>
       <div className="mx-auto grid max-w-screen-xl gap-5 rounded-box bg-base-100 py-5 shadow-2xl md:grid-cols-3 md:items-center">

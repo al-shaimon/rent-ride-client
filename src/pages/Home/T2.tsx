@@ -13,7 +13,7 @@
     <SwiperSlide>
       <div className="my-2 flex h-[300px] transform gap-10 rounded-3xl bg-base-100 shadow-2xl transition-transform hover:scale-105">
         <div className="w-[50%]">
-          <img className="h-[300px]" src="/user1.png" alt="user" />
+          <img className="h-[300px]" src="/user1.webp" alt="user" />
         </div>
 
         <div className="my-2 h-[300px] w-[50%] pr-10">
@@ -68,7 +68,7 @@
     <SwiperSlide>
       <div className="my-2 flex h-[300px] transform gap-10 rounded-3xl bg-base-100 shadow-2xl transition-transform hover:scale-105">
         <div className="w-[50%]">
-          <img className="h-[300px]" src="/user2.png" alt="user" />
+          <img className="h-[300px]" src="/user2.webp" alt="user" />
         </div>
 
         <div className="my-1 h-[300px] w-[50%] pr-10">
@@ -125,7 +125,7 @@
         <div className="w-[50%]">
           <img
             className="h-[300px] rounded-l-3xl"
-            src="/user3.png"
+            src="/user3.webp"
             alt="user"
           />
         </div>
@@ -184,7 +184,7 @@
         <div className="w-[50%]">
           <img
             className="h-[300px] rounded-l-3xl"
-            src="/user4.png"
+            src="/user4.webp"
             alt="user"
           />
         </div>
@@ -243,7 +243,7 @@
         <div className="w-[50%]">
           <img
             className="h-[300px] rounded-l-3xl"
-            src="/user5.png"
+            src="/user5.webp"
             alt="user"
           />
         </div>

@@ -8,11 +8,11 @@ type TeamMember = {
 
 const teamMembers: TeamMember[] = [
   { name: "Al Shaimon", role: "CEO", photoUrl: "/shaimon.webp" },
-  { name: "Mahim Arif", role: "CTO", photoUrl: "/mahim.jpg" },
+  { name: "Mahim Arif", role: "CTO", photoUrl: "/mahim.webp" },
   {
     name: "Hamdanul Haque",
     role: "Marketing Manager",
-    photoUrl: "/hamdan.jpg",
+    photoUrl: "/hamdan.webp",
   },
 ];
 

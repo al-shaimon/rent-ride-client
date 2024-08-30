@@ -2,7 +2,7 @@ const WhyChooseUs = () => {
   return (
     <div className="my-[84px] px-2">
       <div className="flex flex-col-reverse gap-5 lg:flex-row">
-        <img src="/audi-choose-car.png" alt="audi" />
+        <img src="/audi-choose-car.webp" alt="audi" />
         <div>
           <div className="mb-4 text-center">
             <div className="mx-auto mb-5 w-56 rounded-lg bg-[#1572D31A] py-3 md:mx-0">
