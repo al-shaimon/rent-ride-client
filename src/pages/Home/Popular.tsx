@@ -13,7 +13,12 @@ const Popular = () => {
     return <div>Failed to load cars.</div>;
   }
 
-  const cars = data?.data?.slice(0, 4);
+  const filteredCars = data?.data?.filter(
+    (car) => car.status !== "unavailable" && !car.isDeleted,
+  );
+
+  // Take the first 4 cars from the filtered list
+  const popularCars = filteredCars?.slice(0, 4);
 
   return (
     <div className="my-[84px]">
@@ -29,7 +34,7 @@ const Popular = () => {
       </div>
 
       <div className="grid justify-center gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
-        {cars?.map((car) => (
+        {popularCars?.map((car) => (
           <div
             key={car._id}
             className="flex h-full w-80 transform flex-col justify-between rounded-lg bg-base-100 p-10 shadow-2xl transition-transform hover:scale-105"

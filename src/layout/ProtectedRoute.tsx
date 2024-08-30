@@ -10,29 +10,33 @@ import { Navigate } from "react-router-dom";
 
 type TProtectedRoute = {
   children: ReactNode;
-  role: string | undefined;
+  role: string | string[] | undefined;
 };
 
 const ProtectedRoute = ({ children, role }: TProtectedRoute) => {
   const token = useAppSelector(useCurrentToken);
 
-  let user;
+  let user: TUser | null = null;
 
   if (token) {
-    user = verifyToken(token);
+    user = verifyToken(token) as TUser;
   }
 
   const dispatch = useAppDispatch();
 
-  console.log(role);
-
-  if (role !== undefined && role !== (user as TUser)?.role) {
-    dispatch(logout());
-
+  if (!token || !user) {
     return <Navigate to="/login" replace={true} />;
   }
 
-  if (!token) {
+  // Check if the user's role matches the required role
+  if (role && typeof role === "string" && role !== user.role) {
+    dispatch(logout());
+    return <Navigate to="/login" replace={true} />;
+  }
+
+  // Check if the user's role is within the allowed roles array
+  if (role && Array.isArray(role) && !role.includes(user.role as string)) {
+    dispatch(logout());
     return <Navigate to="/login" replace={true} />;
   }
 

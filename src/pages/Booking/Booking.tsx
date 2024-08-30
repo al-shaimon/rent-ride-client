@@ -1,11 +1,9 @@
-// import CarDetailsPage from "./CarDetails";
-import CarListingPage from "./CarListing";
+import BookingCarList from "./BookingCarList";
 
 const Booking = () => {
   return (
     <div>
-      <CarListingPage />
-      {/* <CarDetailsPage/> */}
+      <BookingCarList />
     </div>
   );
 };

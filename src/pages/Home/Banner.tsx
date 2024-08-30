@@ -26,7 +26,7 @@ const Banner = () => {
             Android device.
           </p>
           <div className="mb-10 mt-5 flex justify-center md:mb-0 md:justify-start">
-            <Link to="/cars">
+            <Link to="/booking">
               <button className="btn flex w-36 items-center gap-2 rounded-md border-none bg-primary text-white">
                 Book Now <GoArrowRight size={24} />
               </button>

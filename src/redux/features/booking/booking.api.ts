@@ -26,6 +26,14 @@ const bookingApi = baseApi.injectEndpoints({
         };
       },
     }),
+    bookCar: builder.mutation({
+      query: (data) => ({
+        url: "/bookings",
+        method: "POST",
+        body: data,
+      }),
+      transformResponse: (response: TResponseRedux<any>) => response.data,
+    }),
     updateUserBooking: builder.mutation({
       query: ({ bookingId, updateData }) => ({
         url: `/bookings/update-booking/${bookingId}`,
@@ -54,6 +62,7 @@ const bookingApi = baseApi.injectEndpoints({
 
 export const {
   useGetAllUserBookingQuery,
+  useBookCarMutation,
   useUpdateUserBookingMutation,
   useUpdateAdminBookingMutation,
   useDeleteUserBookingMutation,

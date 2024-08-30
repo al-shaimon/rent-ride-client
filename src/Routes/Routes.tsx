@@ -12,8 +12,8 @@ import Error from "../pages/Error/Error";
 import UserDashboard from "../pages/Dashboard/User/UserDashboard";
 
 import ProtectedRoute from "../layout/ProtectedRoute";
-import CarDetailsPage from "../pages/Booking/CarDetails";
-import CarListingPage from "../pages/Booking/CarListing";
+import CarDetailsPage from "../pages/Cars/CarDetails";
+import CarListingPage from "../pages/Cars/CarListing";
 import ForgetPassword from "../Shared/Auth/ForgetPassword";
 import ResetPassword from "../Shared/Auth/ResetPassword";
 import UserOverview from "../pages/Dashboard/User/UserOverview";
@@ -25,6 +25,9 @@ import ManageCars from "../pages/Dashboard/Admin/ManageCars";
 import ManageBookings from "../pages/Dashboard/Admin/ManageBookings";
 import ManageReturnCars from "../pages/Dashboard/Admin/ManageReturnCars";
 import UserManagement from "../pages/Dashboard/Admin/UserManagement";
+import Booking from "../pages/Booking/Booking";
+import BookingCarDetails from "../pages/Booking/BookingCarDetails";
+import Confirmation from "../pages/Booking/Confirmation";
 
 export const router = createBrowserRouter([
   {
@@ -78,6 +81,30 @@ export const router = createBrowserRouter([
       {
         path: "/reset-password/:token",
         element: <ResetPassword />,
+      },
+      {
+        path: "/booking",
+        element: (
+          <ProtectedRoute role={["user", "admin"]}>
+            <Booking />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/booking/:id",
+        element: (
+          <ProtectedRoute role={["user", "admin"]}>
+            <BookingCarDetails />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/confirmation",
+        element: (
+          <ProtectedRoute role={["user", "admin"]}>
+            <Confirmation />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/dashboard",

@@ -28,7 +28,12 @@ const CarListingPage = () => {
     const maxPriceMatch =
       filters.maxPrice === "" || car.pricePerHour <= parseInt(filters.maxPrice);
     const notDeleted = !car.isDeleted; // Check if the car is not deleted
-    return typeMatch && minPriceMatch && maxPriceMatch && notDeleted;
+    const isAvailable =
+      car.status && car.status.toLowerCase() !== "unavailable"; // Check if the car is available
+
+    return (
+      typeMatch && minPriceMatch && maxPriceMatch && notDeleted && isAvailable
+    );
   });
 
   if (isLoading) {
@@ -49,12 +54,14 @@ const CarListingPage = () => {
       </div>
     );
   }
-  if (error)
+
+  if (error) {
     return (
       <div className="flex min-h-[55vh] items-center justify-center text-center text-xl text-red-500">
         Error loading cars. Please try again later.
       </div>
     );
+  }
 
   return (
     <div className="container mx-auto max-w-7xl p-4">
@@ -125,7 +132,7 @@ const CarListingPage = () => {
                 </div>
                 <div className="card-actions mt-4 justify-end">
                   <Link
-                    to={`/car/${car._id}`}
+                    to={`/booking/${car._id}`}
                     className="btn rounded-md border-none bg-primary text-white"
                   >
                     View Details

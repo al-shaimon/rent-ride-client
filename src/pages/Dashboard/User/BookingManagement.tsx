@@ -1,4 +1,3 @@
- 
 import React, { useState } from "react";
 import {
   useGetAllUserBookingQuery,
@@ -9,6 +8,7 @@ const BookingManagement: React.FC = () => {
   const {
     data: bookings,
     isLoading,
+    isFetching,
     refetch,
   } = useGetAllUserBookingQuery(undefined);
   const [updateUserBooking] = useUpdateUserBookingMutation();
@@ -46,15 +46,14 @@ const BookingManagement: React.FC = () => {
     }
   };
 
+  if (isLoading || isFetching) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
   const renderBookings = () => {
-    if (isLoading) {
-      return (
-        <div className="flex h-screen items-center justify-center">
-          <span className="loading loading-spinner loading-lg"></span>
-        </div>
-      );
-    }
-
     if (bookings && bookings.data.length > 0) {
       return bookings.data
         .filter((booking: any) => !booking.isDeleted)

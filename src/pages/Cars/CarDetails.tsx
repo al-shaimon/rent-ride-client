@@ -6,7 +6,6 @@ import { CirclesWithBar } from "react-loader-spinner";
 interface AdditionalFeature {
   id: string;
   name: string;
-  price: number;
 }
 
 const CarDetailsPage = () => {
@@ -25,9 +24,18 @@ const CarDetailsPage = () => {
   };
 
   const additionalFeatures: AdditionalFeature[] = [
-    { id: "insurance", name: "Insurance", price: 50 },
-    { id: "gps", name: "GPS", price: 30 },
-    { id: "childSeat", name: "Child Seat", price: 25 },
+    {
+      id: "wifi",
+      name: "WiFi",
+    },
+    {
+      id: "sport",
+      name: "Sports Mode",
+    },
+    {
+      id: "hud",
+      name: "Heads-Up Display (HUD)",
+    },
   ];
 
   const handleFeatureToggle = (featureId: string) => {
@@ -38,12 +46,7 @@ const CarDetailsPage = () => {
     );
   };
 
-  const totalPrice = car
-    ? car.pricePerHour +
-      additionalFeatures
-        .filter((feature) => selectedFeatures.includes(feature.id))
-        .reduce((sum, feature) => sum + feature.price, 0)
-    : 0;
+  const totalPrice = car ? car.pricePerHour : 0;
 
   if (isLoading) {
     return (
@@ -82,12 +85,6 @@ const CarDetailsPage = () => {
               onMouseLeave={handleImageZoomOut}
             />
           </div>
-          {/* 
-          <img
-            src={car.image}
-            alt={car.name}
-            className="h-auto w-full rounded-lg shadow-lg"
-          /> */}
           <div className="mt-4">
             <h2 className="mb-2 text-xl font-semibold">Features</h2>
             <ul className="list-inside list-disc">
@@ -99,7 +96,7 @@ const CarDetailsPage = () => {
           <div className="mt-4">
             <h2 className="mb-2 text-xl font-semibold">Customer Reviews</h2>
             {car.reviews && car.reviews.length > 0 ? (
-              car.reviews.map(( index) => (
+              car.reviews.map((index) => (
                 <div key={index} className="mb-2">
                   {/* Render review content here */}
                 </div>
@@ -113,9 +110,7 @@ const CarDetailsPage = () => {
         <div>
           <h2 className="mb-4 text-2xl font-semibold">Details</h2>
           <p className="mb-4">{car.description}</p>
-          <p className="mb-4 text-xl font-bold">
-            Base Price: ${car.pricePerHour.toLocaleString()} per hour
-          </p>
+
           <p className="mb-2">Type: {car.carType}</p>
           <p className="mb-2">Color: {car.color}</p>
           <p className="mb-4">{car.isElectric ? "Electric" : "Non-Electric"}</p>
@@ -130,15 +125,13 @@ const CarDetailsPage = () => {
                   checked={selectedFeatures.includes(feature.id)}
                   onChange={() => handleFeatureToggle(feature.id)}
                 />
-                <span>
-                  {feature.name} (${feature.price})
-                </span>
+                <span>{feature.name}</span>
               </label>
             ))}
           </div>
 
           <p className="mt-6 text-2xl font-bold">
-            Total Price: ${totalPrice.toLocaleString()} per hour
+            Price: ${totalPrice.toLocaleString()} / hr
           </p>
 
           <button className="btn mt-6 rounded-md border-none bg-primary text-white">
