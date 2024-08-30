@@ -94,7 +94,6 @@ const Login = () => {
                   <label className="mb-2 block text-sm">Email</label>
                   <div className="relative flex-1">
                     <input
-                      defaultValue="test@test.com"
                       {...register("email", { required: true })}
                       type="email"
                       className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-blue-600"
@@ -113,7 +112,6 @@ const Login = () => {
                   <label className="mb-2 block text-sm">Password</label>
                   <div className="relative flex-1">
                     <input
-                      defaultValue="password123"
                       {...register("password", { required: true })}
                       type="password"
                       className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-800 outline-blue-600"

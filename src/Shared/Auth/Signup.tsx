@@ -1,8 +1,5 @@
- 
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
-import {
-  useSignupMutation,
-} from "../../redux/features/auth/authApi";
+import { useSignupMutation } from "../../redux/features/auth/authApi";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { toast } from "sonner";
@@ -38,7 +35,7 @@ const Signup = () => {
         type: "manual",
         message: "Passwords do not match",
       });
-      return; 
+      return;
     }
 
     const toastId = toast.loading("Signing up...");
@@ -93,7 +90,6 @@ const Signup = () => {
                   </label>
                   <div className="relative flex-1">
                     <input
-                      defaultValue="test user"
                       {...register("name", { required: true })}
                       type="text"
                       className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-blue-600"
@@ -114,7 +110,6 @@ const Signup = () => {
                   </label>
                   <div className="relative flex-1">
                     <input
-                      defaultValue="test@user.com"
                       {...register("email", { required: true })}
                       type="email"
                       className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-blue-600"
@@ -135,7 +130,6 @@ const Signup = () => {
                   </label>
                   <div className="relative flex-1">
                     <input
-                      defaultValue="password123"
                       {...register("password", {
                         required: true,
                         minLength: 6,
@@ -164,7 +158,6 @@ const Signup = () => {
                   </label>
                   <div className="relative flex-1">
                     <input
-                      defaultValue="password123"
                       {...register("confirmPassword", {
                         required: true,
                       })}
