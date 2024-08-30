@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useGetAllAdminBookingQuery } from "../../../redux/features/admin/admin.api";
 import { useUpdateAdminBookingMutation } from "../../../redux/features/booking/booking.api";
+import { useEffect } from "react";
 import { toast } from "sonner";
 import dayjs from "dayjs";
 
@@ -18,7 +19,12 @@ type BookingData = {
 const ManageBookings = () => {
   const { data, error, isLoading, isFetching, refetch } =
     useGetAllAdminBookingQuery([]);
+
   const [updateAdminBooking] = useUpdateAdminBookingMutation();
+
+  useEffect(() => {
+    refetch(); // Ensure data is fresh on component mount
+  }, [refetch]);
 
   if (isLoading || isFetching) {
     return (

@@ -1,50 +1,91 @@
-# React + TypeScript + Vite
+<div align="center">
+  <h1>RentRide - The best Car Rental Website</h1>
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+# RentRide
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Introduction
 
-## Expanding the ESLint configuration
+RentRide is your one-stop online destination for renting car in most affordable prize.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Project Description
 
-- Configure the top-level `parserOptions` property like this:
+RentRide is a car rental platform designed to provide users with a seamless car booking experience. The platform features a variety of cars. Users can browse cars, view detailed descriptions and features, and rent them.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+<!-- ## Features
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Product Listings**: Browse a wide range of camping products.
+- **Product Details**: View detailed information and images of each product.
+- **Search and Filter**: Search for products and filter by category, price range, and more.
+- **Cart Management**: Add, update, and remove items from the shopping cart.
+- **Checkout Process**: Complete purchases with a streamlined checkout process.
+- **Manage Products**: Manage products, categories, and orders. -->
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Technology Stack
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **Frontend**: React, TypeScript, Tailwind CSS, Daisy Ui
+- **Backend**: Node.js, Express, Mongoose, TypeScript
+- **State Management**: Redux Toolkit
+- **API**: RESTful API
+- **Database**: MongoDB
+- **Build Tool**: Vite
+
+## Installation Guideline
+
+Follow these steps to get the project running locally.
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+- MongoDB
+
+### Installation Steps
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/al-shaimon/rent-ride-client
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+## Usage
+
+To use the project, follow these steps:
+
+1. **Start the development server**:
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+2. **Open your browser and navigate to** `http://localhost:5173`.
+
+3. **Browse Cars**: Use the search and filter options to find the products you need.
+
+4. **Book Now**: Select car and book the car by adding your information.
+
+For more detailed usage instructions, refer to the code snippets and examples provided in the
+project files.
+
+---
+
+Enjoy experience with RentRide and have a safe drive!

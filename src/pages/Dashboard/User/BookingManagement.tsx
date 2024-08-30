@@ -79,12 +79,27 @@ const BookingManagement: React.FC = () => {
               </p>
               <p>
                 <strong>Status:</strong>{" "}
-                {booking.endTime
-                  ? "Past Booking"
-                  : booking?.approval
-                    ? "Upcoming"
-                    : "Pending Approval"}
+                <span
+                  className={
+                    booking.paymentStatus
+                      ? "font-medium text-green-500"
+                      : booking.endTime
+                        ? "font-medium text-yellow-500"
+                        : booking?.approval
+                          ? "font-medium text-green-500"
+                          : "font-medium text-red-500"
+                  }
+                >
+                  {booking.paymentStatus
+                    ? "Payment Completed"
+                    : booking.endTime
+                      ? "Pending Payment"
+                      : booking?.approval
+                        ? "Upcoming"
+                        : "Pending Approval"}
+                </span>
               </p>
+
               <div className="card-actions justify-end space-x-2">
                 {!booking?.approval && !booking.endTime && (
                   <>
