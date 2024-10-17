@@ -1,15 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { toggleTheme } from "../../redux/features/themeSlice";
-import { selectCurrentUser } from "../../redux/features/auth/authSlice";
+import { selectCurrentUser, logout } from "../../redux/features/auth/authSlice";
 
 const NavBar = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate(); // Hook to programmatically navigate
   const currentTheme = useAppSelector((state) => state.theme.currentTheme);
   const currentUser = useAppSelector(selectCurrentUser);
 
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
+  };
+
+  const handleLogout = () => {
+    dispatch(logout()); // Call the logout action
+    navigate("/"); // Redirect to home after logging out
   };
 
   return (
@@ -53,14 +59,14 @@ const NavBar = () => {
             <li>
               <NavLink to="/about-us">About</NavLink>
             </li>
-            {!currentUser && ( // Hide Sign in and Sign up buttons if the user is logged in
+            {!currentUser && (
               <>
-                <li className="my-2 md:hidden">
+                <li className="my-2">
                   <NavLink className="btn btn-outline btn-sm" to="/login">
                     Sign in
                   </NavLink>
                 </li>
-                <li className="md:hidden">
+                <li>
                   <NavLink
                     className="btn btn-sm bg-primary text-white"
                     to="/signup"
@@ -70,23 +76,31 @@ const NavBar = () => {
                 </li>
               </>
             )}
-            <li className="lg:hidden">
+            <li>
               {currentUser ? (
-                currentUser.role === "admin" ? (
-                  <NavLink
-                    to="/admin/dashboard"
-                    className="btn btn-sm bg-primary text-white"
+                <>
+                  {currentUser.role === "admin" ? (
+                    <NavLink
+                      to="/admin/dashboard"
+                      className="btn btn-sm bg-primary text-white"
+                    >
+                      Dashboard
+                    </NavLink>
+                  ) : (
+                    <NavLink
+                      to="/dashboard"
+                      className="btn btn-sm bg-primary text-white"
+                    >
+                      Dashboard
+                    </NavLink>
+                  )}
+                  <button
+                    onClick={handleLogout}
+                    className="btn btn-sm mt-2 bg-red-500 text-white"
                   >
-                    Dashboard
-                  </NavLink>
-                ) : (
-                  <NavLink
-                    to="/dashboard"
-                    className="btn btn-sm bg-primary text-white"
-                  >
-                    Dashboard
-                  </NavLink>
-                )
+                    Logout
+                  </button>
+                </>
               ) : null}
             </li>
           </ul>
@@ -103,7 +117,7 @@ const NavBar = () => {
       {/* Navbar End */}
       <div className="navbar-end">
         <div className="me-2 hidden gap-2 md:flex">
-          {!currentUser && ( // Hide Sign in and Sign up buttons if the user is logged in
+          {!currentUser && (
             <>
               <NavLink to="/login" className="btn btn-ghost">
                 Sign in
@@ -117,21 +131,29 @@ const NavBar = () => {
             </>
           )}
           {currentUser ? (
-            currentUser.role === "admin" ? (
-              <NavLink
-                to="/admin/dashboard"
-                className="btn rounded-md border-none bg-primary text-white"
+            <>
+              {currentUser.role === "admin" ? (
+                <NavLink
+                  to="/admin/dashboard"
+                  className="btn rounded-md border-none bg-primary text-white"
+                >
+                  Dashboard
+                </NavLink>
+              ) : (
+                <NavLink
+                  to="/dashboard"
+                  className="btn rounded-md border-none bg-primary text-white"
+                >
+                  Dashboard
+                </NavLink>
+              )}
+              <button
+                onClick={handleLogout}
+                className="btn rounded-md border-none bg-red-500 text-white"
               >
-                Dashboard
-              </NavLink>
-            ) : (
-              <NavLink
-                to="/dashboard"
-                className="btn rounded-md border-none bg-primary text-white"
-              >
-                Dashboard
-              </NavLink>
-            )
+                Logout
+              </button>
+            </>
           ) : null}
         </div>
         <button

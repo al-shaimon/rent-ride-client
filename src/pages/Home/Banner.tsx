@@ -37,7 +37,7 @@ const Banner = () => {
           <img src="/car.webp" alt="car" />
         </div>
       </div>
-      <div className="mx-auto grid max-w-screen-xl gap-5 rounded-box bg-base-100 py-5 shadow-2xl md:grid-cols-3 md:items-center">
+      {/* <div className="mx-auto grid max-w-screen-xl gap-5 rounded-box bg-base-100 py-5 shadow-2xl md:grid-cols-3 md:items-center">
         <div className="mx-auto flex w-[225px] items-center justify-center gap-2">
           <FiMapPin size={32} />
           <div>
@@ -77,7 +77,7 @@ const Banner = () => {
             Search
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
