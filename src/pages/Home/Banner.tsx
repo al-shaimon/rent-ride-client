@@ -1,14 +1,8 @@
-import { useState } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { FiMapPin } from "react-icons/fi";
 import { GoArrowRight } from "react-icons/go";
-import { MdOutlineCalendarMonth } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const Banner = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  // console.log(startDate, endDate);
 
   return (
     <div className="mt-3">
