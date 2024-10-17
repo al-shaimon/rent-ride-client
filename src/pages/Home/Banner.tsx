@@ -37,47 +37,6 @@ const Banner = () => {
           <img src="/car.webp" alt="car" />
         </div>
       </div>
-      {/* <div className="mx-auto grid max-w-screen-xl gap-5 rounded-box bg-base-100 py-5 shadow-2xl md:grid-cols-3 md:items-center">
-        <div className="mx-auto flex w-[225px] items-center justify-center gap-2">
-          <FiMapPin size={32} />
-          <div>
-            <p className="font-bold">Location</p>
-            <select className="select select-bordered w-full max-w-xs focus:outline-none">
-              <option disabled selected>
-                Search your location
-              </option>
-              <option>Barishal</option>
-              <option>Chittagong</option>
-              <option>Dhaka</option>
-              <option>Khulna</option>
-              <option>Rajshahi</option>
-              <option>Rangpur</option>
-              <option>Mymensingh</option>
-              <option>Sylhet</option>
-            </select>
-          </div>
-        </div>
-        <div className="mx-auto flex w-[320px] items-center justify-end gap-2">
-          <MdOutlineCalendarMonth size={32} />
-          <div>
-            <p className="font-bold">Pickup date</p>
-            <DatePicker
-              selected={startDate}
-              dateFormat="dd/MM/yyyy"
-              minDate={new Date()}
-              onChange={(date) => {
-                setStartDate(date as Date);
-              }}
-              className="bg-base-100"
-            />
-          </div>
-        </div>
-        <div className="mx-auto flex items-center">
-          <Link to="/cars" className="btn w-72 rounded-md border-none bg-primary text-white md:w-44">
-            Search
-          </Link>
-        </div>
-      </div> */}
     </div>
   );
 };
