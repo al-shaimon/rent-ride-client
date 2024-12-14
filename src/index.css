@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Poppins", sans-serif !important;
+}
+
+body {
+  @apply dark:text-white;
+  @apply text-black;
+}
+
+/* custom-datepicker.css */
+.react-datepicker {
+  @apply bg-base-100 text-base-content;
+}
+
+.react-datepicker__header {
+  @apply bg-base-200;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  @apply text-base-content;
+}
+
+.react-datepicker__day:hover,
+.react-datepicker__month-text:hover,
+.react-datepicker__quarter-text:hover,
+.react-datepicker__year-text:hover {
+  @apply bg-base-300;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__month-text--selected,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--selected,
+.react-datepicker__quarter-text--in-selecting-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--selected,
+.react-datepicker__year-text--in-selecting-range,
+.react-datepicker__year-text--in-range {
+  @apply bg-primary text-primary-content;
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container img {
+  transform: scale(1);
+  transition: transform 0.3s ease-out;
+}
+
+.image-container:hover img {
+  transform: scale(1.6);
+}
+
+.sidebarActive {
+  background-color: #1572d3;
+  color: #fff;
+  font-weight: 600;
+}
+
+.sidebarActive:hover {
+  background-color: #e0e0e0;
+  color: black;
+  font-weight: 600;
+}
