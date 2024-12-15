@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type Theme = 'light' | 'dark';
 
-// Retrieve the initial theme from localStorage or default to 'light'
+// Retrieve the initial theme from localStorage or default to system preference
 const getSystemTheme = (): Theme => {
   if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     return 'dark';
@@ -10,14 +10,20 @@ const getSystemTheme = (): Theme => {
   return 'light';
 };
 
-const storedTheme = (localStorage.getItem('theme') as Theme) || getSystemTheme();
+const storedTheme = localStorage.getItem('theme') as Theme;
+const initialTheme = storedTheme || getSystemTheme();
+
+// Apply initial theme to document
+document.documentElement.setAttribute('data-theme', initialTheme);
+document.documentElement.classList.remove('light', 'dark');
+document.documentElement.classList.add(initialTheme);
 
 interface ThemeState {
   currentTheme: Theme;
 }
 
 const initialState: ThemeState = {
-  currentTheme: storedTheme,
+  currentTheme: initialTheme,
 };
 
 const themeSlice = createSlice({
@@ -28,11 +34,15 @@ const themeSlice = createSlice({
       state.currentTheme = state.currentTheme === 'light' ? 'dark' : 'light';
       localStorage.setItem('theme', state.currentTheme);
       document.documentElement.setAttribute('data-theme', state.currentTheme);
+      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.add(state.currentTheme);
     },
     setTheme: (state, action: PayloadAction<Theme>) => {
       state.currentTheme = action.payload;
       localStorage.setItem('theme', state.currentTheme);
       document.documentElement.setAttribute('data-theme', state.currentTheme);
+      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.add(state.currentTheme);
     },
   },
 });

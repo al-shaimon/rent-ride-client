@@ -7,16 +7,28 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    // Handle initial theme
     const storedTheme = localStorage.getItem('theme') as 'light' | 'dark';
-    if (storedTheme) {
-      dispatch(setTheme(storedTheme));
-    }
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const initialTheme = storedTheme || systemTheme;
+    
+    dispatch(setTheme(initialTheme));
+
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleThemeChange = (e: MediaQueryListEvent) => {
+      if (!localStorage.getItem('theme')) {
+        dispatch(setTheme(e.matches ? 'dark' : 'light'));
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleThemeChange);
+    return () => mediaQuery.removeEventListener('change', handleThemeChange);
   }, [dispatch]);
+
   return (
     <>
-      {/* <ProtectedRoute> */}
       <MainLayout />
-      {/* </ProtectedRoute> */}
     </>
   );
 }
