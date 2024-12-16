@@ -10,6 +10,7 @@ const getSystemTheme = (): Theme => {
   return 'light';
 };
 
+// store the current theme
 const storedTheme = localStorage.getItem('theme') as Theme;
 const initialTheme = storedTheme || getSystemTheme();
 
