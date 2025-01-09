@@ -8,12 +8,12 @@ type TeamMember = {
 
 const teamMembers: TeamMember[] = [
   { name: "Al Shaimon", role: "CEO", photoUrl: "/shaimon.webp" },
-  { name: "Mahim Arif", role: "CTO", photoUrl: "/mahim.webp" },
-  {
-    name: "Hamdanul Haque",
-    role: "Marketing Manager",
-    photoUrl: "/hamdan.webp",
-  },
+  // { name: "Mahim Arif", role: "CTO", photoUrl: "/mahim.webp" },
+  // {
+  //   name: "Hamdanul Haque",
+  //   role: "Marketing Manager",
+  //   photoUrl: "/hamdan.webp",
+  // },
 ];
 
 const About = () => {
@@ -40,7 +40,7 @@ const About = () => {
       </section>
 
       {/* Our Team */}
-      <section className="container mx-auto my-12 px-4">
+      <section className="container mx-auto my-12 px-4 md:hidden">
         <h2 className="mb-4 text-center text-3xl font-semibold md:text-start">
           Our Team
         </h2>

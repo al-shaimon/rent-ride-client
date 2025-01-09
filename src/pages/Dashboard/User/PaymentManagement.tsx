@@ -15,9 +15,7 @@ import {
 } from "../../../redux/features/booking/booking.api";
 import { toast } from "sonner";
 
-const stripePromise = loadStripe(
-  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
-);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 // First, let's define the interface for CheckoutForm props
 interface CheckoutFormProps {
